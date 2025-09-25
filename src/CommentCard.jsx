@@ -120,7 +120,7 @@ export const CommentCard = ({ comment, replyCallback, editCallback, deleteCallba
                     </div>
                 </div>
                 {replyVisible && (
-                    <ReplyForm user={user} callback={handleReply}>
+                    <ReplyForm user={storedUser} callback={handleReply}>
                         Reply
                     </ReplyForm>
                 )}
