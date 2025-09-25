@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+:root {
+    --purple-600: hsl(238, 40%, 52%);
+    --pink-400: hsl(358, 79%, 66%);
+    --purple-200: hsl(239, 57%, 85%);
+    --pink-200: hsl(357, 100%, 86%);
+    --grey-800: hsl(212, 24%, 26%);
+    --grey-500: hsl(211, 10%, 45%);
+    --grey-100: hsl(223, 19%, 93%);
+    --grey-50: hsl(228, 33%, 97%);
+    --white: hsl(0, 100%, 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: "Barlow Semi Condensed", "Noto Sans", "Rubik", sans-serif;
+}
