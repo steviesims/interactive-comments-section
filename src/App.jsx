@@ -60,7 +60,7 @@ function App() {
     const newReply = {
       id: Date.now(), // Simple unique ID based on timestamp
       content: replyContent,
-      createdAt: "now",
+      createdAt: new Date().toISOString(),
       score: 0,
       user: currentUser,
       replies: []
@@ -95,6 +95,85 @@ function App() {
     setComments(prevComments => [...prevComments, newComment]);
   }
 
+  const editComment = (commentId, newContent) => {
+  setComments(prevComments => {
+    // recursive helper: returns a NEW array with the matching comment updated
+    const updateTree = (items) => {
+      return items.map(item => {
+        if (item.id === commentId) {
+          // found it — return an updated copy (keep replies unchanged here)
+          return {
+            ...item,
+            content: newContent,
+            createdAt: new Date().toISOString()
+          };
+        }
+
+        // otherwise recurse into replies (if any)
+        if (item.replies && item.replies.length > 0) {
+          return {
+            ...item,
+            replies: updateTree(item.replies),
+          };
+        }
+
+        // no change
+        return item;
+      });
+    };
+
+    return updateTree(prevComments);
+  });
+};
+
+
+  const deleteComment = (commentId) => {
+    setComments(prevComments => {
+      const deleteFromTree = (items) => {
+        return items.filter(item => {
+          if (item.id === commentId) {
+            return false; // Remove this item
+          }
+
+          // Recursively check replies
+          if (item.replies && item.replies.length > 0) {
+            item.replies = deleteFromTree(item.replies);
+          }
+
+          return true; // Keep this item
+        });
+      };
+
+      return deleteFromTree(prevComments);
+    });
+  }
+
+  const updateScore = (commentId, increment) => {
+    setComments(prevComments => {
+      const updateTree = (items) => {
+        return items.map(item => {
+          if (item.id === commentId) {
+            return {
+              ...item,
+              score: Math.max(0, item.score + increment),
+            };
+          }
+
+          if (item.replies && item.replies.length > 0) {
+            return {
+              ...item,
+              replies: updateTree(item.replies),
+            };
+          }
+
+          return item;
+        });
+      };
+
+      return updateTree(prevComments);
+    });
+  };
+
   if (!comments || comments.length === 0) {
     return <div className='container'>No comments available</div>;
   }
@@ -104,10 +183,11 @@ function App() {
   }
 
 
+
   return (
     <div className='container'>
       {comments.map((comment, index) => (
-        <CommentCard key={index} comment={comment} replyCallback={replyCallback } />
+        <CommentCard key={index} comment={comment} replyCallback={replyCallback} editCallback={ editComment} deleteCallback={deleteComment} updateScoreCallback={updateScore} />
       ))}
       {currentUser && Object.keys(currentUser).length > 0 && (
         <ReplyForm user={currentUser} callback={addComment}>

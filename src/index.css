@@ -4,8 +4,10 @@
     --pink-400: hsl(358, 79%, 66%);
     --purple-200: hsl(239, 57%, 85%);
     --pink-200: hsl(357, 100%, 86%);
+    --pink-600: hsl(358, 79%, 56%);
     --grey-800: hsl(212, 24%, 26%);
     --grey-500: hsl(211, 10%, 45%);
+    --grey-600: hsl(211, 10%, 35%);
     --grey-100: hsl(223, 19%, 93%);
     --grey-50: hsl(228, 33%, 97%);
     --white: hsl(0, 100%, 100%);
@@ -19,10 +21,13 @@
     font-size: 16px;
 }
 
+*:focus {
+    outline: none;
+}
+
 body {
     font-size: 16px;
     font-family: "Barlow Semi Condensed", "Noto Sans", "Rubik", sans-serif;
-    min-width: 100vw;
     min-height: 100vh;
     background-color: var(--grey-50);
 }
