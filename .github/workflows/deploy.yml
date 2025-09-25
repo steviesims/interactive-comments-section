@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ main ]      # change branch if needed
+    branches: [ master ]      # change branch if needed
   workflow_dispatch:
 
 permissions:
