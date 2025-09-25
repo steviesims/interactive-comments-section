@@ -15,9 +15,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Barlow Semi Condensed", "Noto Sans", "Rubik", sans-serif;
+    font-size: 16px;
 }
 
 body {
     font-size: 16px;
     font-family: "Barlow Semi Condensed", "Noto Sans", "Rubik", sans-serif;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: var(--grey-50);
 }
